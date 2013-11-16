@@ -25,8 +25,8 @@
                     API.on(API.USER_JOIN,                   this.proxy.userJoin);
      
                     //startup messages
-                    API.sendChat('/me Quizbot online : version 0.0.3')
-                    console.log('Quizbot ' + '0.0.3' )
+                    API.sendChat('/me Quizbot online (version 0.0.4)')
+                    console.log('Quizbot ' + '0.0.4' )
      
                     //load player stats
                     if (JSON.parse(localStorage.getItem('playerNames')) !== null) {
@@ -78,13 +78,18 @@
             questionPicker: [],
             songTimer: ['1','1'],
             questions: [
-                    // "[Musica] Qual o artista mais com mais views no youtube ?",
-                    // "[Gaming] [LoL] Quem foi o campeão da 1 temporada de jogos.",
-                    // "[Gaming] [Minecraft] Diamonds start appearing at what y-level?",
-                    // "[Gaming] [Skyrim] The name of Markarth's hold.",
-                    // "[Gaming] [PokÃ©mon] Name of the PokÃ©mon Professor in Ruby/Sapphire/Emerald.",
+                    // "[Music] ",
+                    // "[Gaming] [LoL] ",
+                    // "[Gaming] [Minecraft] ",
+                    // "[Gaming] [Skyrim] ",
+                    // "[Gaming] [Pokemon] ",
+                    //"/me [Gaming] [Pokemon] What is the name of the first Pokemon game ever released?",
+                    
+
                     // "[plug.dj] When did plug.dj go public?",
-                    "[plug.dj] What is the maximum of songs you can have in a playlist?",
+                    "/me [plug.dj] What is the maximum of songs you can have in a playlist?",
+                    "test-question 1 : answer with 'test' "
+                    "test-question 2 : answer with 'test' "
                     
             ],
             answers: [
@@ -92,10 +97,12 @@
                     //[plug.dj]
                    				 //["february 29, 2012", "feb 29 2012", "02/29/12", "february 29 2012", "february 29th, 2012", "29/02/12", "february 29th 2012", "29.2.12", "29.02.12", "02.29.12", "2.29.12"],
                   	["200", "200 songs", "200 tracks"],
+                  	"test",
+                  	"test",
                   
             ],
             themes: [
-                    " Correct answer!! you have been awarded with 1 point, for a total of: ",
+                    " Correct answer! you have been awarded with 1 point, for a total of: ",
                     ["Correct answer test", "end of test"]
             ],
      
@@ -136,7 +143,7 @@
                                     break;
                             case '!!kill':
                                     if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
-                                            API.sendChat('/me cya later peeps, quizbot has to leave ;)')
+                                            API.sendChat('/me Quizbot logging off')
                                             this.close()
                                     }
                                     break;
@@ -171,7 +178,7 @@
                             }
                     }
      
-                    //answering questions stuff
+                    //controleer of antwoord juist is
                     if (this.answerMode.length === 1 && data.fromID !== API.getUser().id) {
                             var answerCorrect = false
                             if (typeof this.answers[this.questionPicker.length] === 'string') {
@@ -189,16 +196,17 @@
                             if (answerCorrect === true) {
                                     this.answerMode.length = 0
                                     this.questionPicker.push('1')
-                                    //check if user is in the database
+                                    //user in database?
+                                    
                                     if (this.playerNames.indexOf(data.fromID) === -1) {
-                                            //new user stuff
+                                            //nieuwe gebruiker
                                             this.playerNames.push(data.fromID)
                                             this.playerTheme.push('0')
                                             this.playerPoints.push('1')
                                             this.playerCoins.push('5')
                                             API.sendChat('@' + data.from + ' you gave the correct answer! you gained 1 points, for a total of : 1 point')
                                     } else {
-                                            //existing user
+                                            //bestaande gebruiker
                                             var user = this.playerNames.indexOf(data.fromID)
                                             var coins = parseInt(this.playerCoins[user]) + 1
                                             var points = parseInt(this.playerPoints[user]) + 5
@@ -213,6 +221,8 @@
             },
      
             onDjAdvance: function(obj) {
+            
+            
                     //timer
                     this.songTimer.push('1')
                     var timer = this.songTimer.length, w = this.questionPicker.length
