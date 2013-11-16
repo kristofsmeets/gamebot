@@ -18,8 +18,8 @@ var quizBotModel = require('app/base/Class').extend({
 		API.on(API.USER_JOIN,			this.proxy.userJoin);
 
 		//starup messages
-		API.sendChat('Quizbot versão ' + this.version + ' ligado, primeira pergunta na proxima música!')
-		console.log('Quizbot ' + this.version + ' esta rodando cara cuidado XP')
+		API.sendChat('/me Quizbot version ' + this.version + ' online')
+		console.log('Quizbot ' + this.version + ' online')
 
 		//load player stats
 		if (JSON.parse(localStorage.getItem('playerNames')) !== null) {
@@ -52,7 +52,7 @@ var quizBotModel = require('app/base/Class').extend({
 		API.off(API.USER_JOIN,			this.proxy.userJoin);
 
 		//shutdown message
-		console.log('Quizbot versão ' + this.version + ' desligado')
+		console.log('Quizbot version ' + this.version + ' shutting down')
 
 		//save player stats
 		localStorage.setItem('playerNames', JSON.stringify(this.playerNames))
@@ -62,7 +62,7 @@ var quizBotModel = require('app/base/Class').extend({
 	},
 
 	//variables & arrays
-	version: '0.1.3',
+	version: '0.0.4',
 	playerNames: [],
 	playerCoins: [],
 	playerTheme: [],
@@ -71,110 +71,26 @@ var quizBotModel = require('app/base/Class').extend({
 	questionPicker: [],
 	songTimer: ['1','1'],
 	questions: [
-		"[Musica] Qual o artista mais com mais views no youtube ?",
-		"[Musica] Nome do artista de Glitch Hop que teve o seu primeiro som com o novo layout da network Monstercat.",
-		"[Musica] O que significa EDM ?",
-		"[Musica] \"Ain't No Party Like A _____ _____\"",
-		"[Musica] Quem foi o DJ #1 em 2012 de acordo com DJMAG?",
-		"[Musica] How many songs are on the Monstercat Launch Week Album?",
-		"[Gaming] [LoL] Quem foi o campeão da 1 temporada de jogos.",
-		"[Gaming] [LoL] Quem foi o campeão da 2 temporada de jogos.",
-		"[Gaming] [LoL] Preço do The Brutalizer.",
-		"[Gaming] [LoL] Preço do Infinity Edge.",
-		"[Gaming] [LoL] Quantos minutos demora para o dragão respawnar ?",
-		"[Gaming] [LoL] Who was the 100th released champion?",
-		"[Gaming] [LoL] Champion with the ability called \"Heartseeker Strikes.\"",
-		"[Gaming] [LoL] Who is the strongest Monster in the Twisted Treeline?",
-		"[Gaming] [LoL] What weapon does Jax use?",
-		"[Gaming] [LoL] How many minutes does \"Exalted with Baron Nashor\" last?",
-		"[Gaming] [Minecraft] Diamonds start appearing at what y-level?",
-		"[Gaming] [Minecraft] How many diferent trees are there?",
-		"[Gaming] [Minecraft] How many items can you cook with one piece of coal?",
-		"[Gaming] [Minecraft] How many items can you cook with one coal block?",
-		"[Gaming] [Minecraft] What is the normal drop rate of a Wither Skull from a Wither Skeleton?",
-		"[Gaming] [Minecraft] How many uses does a Golden Pickaxe have?",
-		"[Gaming] [Minecraft] How many logs do you need to create 75 sticks?",
-		"[Gaming] [Skyrim] The name of Markarth's hold.",
-		"[Gaming] [Skyrim] What Smithing level is required for the Orchish Smithing perk?",
-		"[Gaming] [Skyrim] The name of the housecarl appointed to you in Whiterun.",
-		"[Gaming] [Skyrim] \"Aww, let me guess: someone stole your _______ ?\"",
-		"[Gaming] [Skyrim] How many skills are present in Skyrim?",
-		"[Gaming] [Skyrim] How many houses can you buy in total (excluding DLC)?",
-		"[Gaming] [Skyrim] What material is the strongest for Heavy Armor?",
-		"[Gaming] [PokÃ©mon] Name of the PokÃ©mon Professor in Ruby/Sapphire/Emerald.",
-		"[Gaming] [PokÃ©mon] Seviper's mortal enemy.",
-		"[Gaming] [PokÃ©mon] Number 150 on the PokÃ©dex.",
-		"[Gaming] [PokÃ©mon] How many PokÃ©mon exist, up to generation 5?",
-		"[Gaming] [PokÃ©mon] Trade a Spearow for this PokÃ©mon in Vermillion City.",
-		"[Gaming] [PokÃ©mon] Unova's map is based on which real life city?",
-		"[Gaming] [PokÃ©mon] What do you give to the gate guards that block the way to Saffron City? (gen 3)",
-		"[plug.dj] What is Super's favorite genre?",
-		"[plug.dj] Qual o nome do dono e criador do plug.dj.",
-		"[plug.dj] Who created me?",
-		"[plug.dj] Who is the head of the BA Program?",
-		"[plug.dj] When did plug.dj go public?",
-		"[plug.dj] How many Brand Ambassadors are there?",
-		"[plug.dj] What is the best Plug.DJ Addon?",
-		"[plug.dj] How many avatars are available in total, excluding Halloween and custom skins?",
-		"[plug.dj] What is the maximum number of songs you can have in a playlist?",
+		// "[Music] ",
+                    // "[Gaming] [LoL] ",
+                    // "[Gaming] [Minecraft] ",
+                    // "[Gaming] [Skyrim] ",
+                    // "[Gaming] [Pokemon] ",
+                    //"/me [Gaming] [Pokemon] What is the name of the first Pokemon game ever released?",
+                    
+
+                    // "[plug.dj] When did plug.dj go public?",
+                    "/me [plug.dj] What is the maximum of songs you can have in a playlist?",
+                    
 	],
 	answers: [
-		//[Music]
-		"pegboard nerds",
-		"twothirds",
-		"electronic dance music",
-		"muzzy party",
-		"armin van buuren",
-		["7", "7 songs", "seven", "seven songs"],
-		//[Gaming] [LoL]
-		"fnatic",
-		["tpa", "taipei assassins"],
-		["1337", "1337 gold", "1337g", "1337 g"],
-		["3800", "3800 gold", "1337g", "1337 g"],
-		["6", "six"],
-		"jayce",
-		"pantheon",
-		"vilemaw",
-		["lamppost", "lamp post"],
-		["4", "4 minutes"],
-		//[Gaming] [Minecraft]
-		"16",
-		["4", "four"],
-		["8", "eight", "8 items", "eight items"],
-		["80", "80 items"],
-		["2.5%", "1/40", "0.025", "2.5"],
-		["33", "33 uses"],
-		["10", "ten"],
-		//[Gaming] [Skyrim]
-		"the reach",
-		["50", "fifty"],
-		"lydia",
-		"sweetroll",
-		["18", "18 skills"],
-		["5", "five"],
-		["daedric", "daedric armor"],
-		//[Gaming] [Pokemon]
-		["birch", "professor birch", "prof birch", "prof. birch"],
-		"zangoose",
-		"mewtwo",
-		["649", "649 pokemon"],
-		'farfetch\'d',
-		["new york", "new york city"],
-		["tea", "hot tea"],
-		//[plug.dj]
-		"glitchhop",
-		"steven",
-		"fungus and super",
-		"sachi",
-		["february 29, 2012", "feb 29 2012", "02/29/12", "february 29 2012", "february 29th, 2012", "29/02/12", "february 29th 2012", "29.2.12", "29.02.12", "02.29.12", "2.29.12"],
-		"21",
-		["plugcubed"],
-		["48", "48 avatars"],
-		["200", "200 songs"],
+				 //[plug.dj]
+                   				
+                  	["200", "200 songs", "200 tracks"],
 	],
 	themes: [
-		" RESPOSTA CORRETA XD, Você ganhou 5 QuizCoins e pontos, total de: ",
-		["resposta de teste correta", " esta quebrando o concerto! Bem-vindo novamente!", "teste acabou"]
+		" Correct answer! you have been awarded with 1 point, for a total of:  ",
+		["Correct answer test", "test", "end of test"]
 	],
 
 	//get user object function
@@ -192,55 +108,55 @@ var quizBotModel = require('app/base/Class').extend({
 		var message = data.message.toLowerCase()
 
 		//bouncer ~commands
-		if (message.indexOf('~') === 0 && API.hasPermission(data.fromID, API.ROLE.BOUNCER)) {
+		if (message.indexOf('!!') === 0 && API.hasPermission(data.fromID, API.ROLE.BOUNCER)) {
 			switch (message) {
-			case '~quizhelp':
-				API.sendChat('Quizbot é um bot que tem um sistema de perguntas, a cada pergunta a primeira pessoa que responder corretamente a pergunta ganha 5 pontos e 5 Quizcoins!')
+			case '!!help':
+				API.sendChat('/me Give the correct answer to my questions and i will award you with points, maybe you will eventually find yourself on the top of the leaderboard ;)')
 				break;
-			case '~leaderboard':
+			case '!!leaderboard':
 				var link = ''
-				API.sendChat('Breve...')
+				API.sendChat('/me not yet implemented')
 				break;
-			case '~shop':
+			case '!!shop':
 				var link = ''
-				API.sendChat('Breve...')
+				API.sendChat('/me not yet implemented')
 				break;
-			case '@save':
+			case '!!save':
 				localStorage.setItem('playerNames', JSON.stringify(this.playerNames))
 				localStorage.setItem('playerCoins', JSON.stringify(this.playerCoins))
 				localStorage.setItem('playerTheme', JSON.stringify(this.playerTheme))
 				localStorage.setItem('playerPoints', JSON.stringify(this.playerPoints))
-				API.sendChat('Stats saved.')
+				API.sendChat('/me QuizBot stats saved.')
 				break;
-			case '~quizkill':
-				if (API.hasPermission(data.fromID,API.ROLE.MANAGER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
-					API.sendChat('Quizbot tem que sair, eu voltarei em breve ;)')
+			case '!!kill':
+				if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
+					API.sendChat('/me QuizBot going offline')
 					this.close()
 				}
 				break;
-			case '!quizreload':
-				if (API.hasPermission(data.fromID,API.ROLE.MANAGER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
-					API.sendChat('Recarregando...')
+			case '!!reload':
+				if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
+					API.sendChat('/me Reloading QuizBot...')
 					setTimeout(function(){$.getScript('https://raw.github.com/TNBUP/blah/master/automoderator.js')},2000)
 				}
 				break;
 			}
-			if (message.indexOf('!points @') === 0) {
+			if (message.indexOf('!!points @') === 0) {
 				var user = this.getUserID(data.message.substr(8))
-				if (user === null) { API.sendChat('Usuario não encontrado!') }
+				if (user === null) { API.sendChat('User does not exist') }
 				else {
-					if (this.playerNames.indexOf(user.id) === -1) { API.sendChat('Esse usuario não respondeu nenhuma pergunta, ainda.') }
+					if (this.playerNames.indexOf(user.id) === -1) { API.sendChat('This user did not answer to a question yet') }
 					else {
 						var nameIndex = this.playerNames.indexOf(user.id)
-						API.sendChat(user.username + ' tem ' + this.playerPoints[nameIndex] + ' pontos')
+						API.sendChat(user.username + ' has ' + this.playerPoints[nameIndex] + ' points')
 					}
 				}
 			}
-			if (message.indexOf('~coins @') === 0) {
+			if (message.indexOf('!!coins @') === 0) {
 				var user = this.getUserID(data.message.substr(7))
-				if (user === null) { API.sendChat('Usuario não encontrado!') }
+				if (user === null) { API.sendChat('User does not exist') }
 				else {
-					if (this.playerNames.indexOf(user.id) === -1) { API.sendChat('Este usuário não respondeu nenhuma questão.') }
+					if (this.playerNames.indexOf(user.id) === -1) { API.sendChat('This user did not answer to a question yet') }
 					else {
 						var nameIndex = this.playerNames.indexOf(user.id)
 						API.sendChat(user.username + ' has ' + this.playerCoins[nameIndex] + ' coins.')
@@ -274,7 +190,7 @@ var quizBotModel = require('app/base/Class').extend({
 					this.playerTheme.push('0')
 					this.playerPoints.push('5')
 					this.playerCoins.push('5')
-					API.sendChat('@' + data.from + ' resposta correta! Ganhou 5 QuizCoins, um total de: 5 QC, 5 pts')
+					API.sendChat('@' + data.from + ' you gave the correct answer! you gained 1 points, for a total of : 1 point')
 				} else {
 					//existing user
 					var user = this.playerNames.indexOf(data.fromID)
@@ -283,7 +199,7 @@ var quizBotModel = require('app/base/Class').extend({
 					var theme = this.themes[parseInt(this.playerTheme[user])]
 					this.playerCoins[user] = coins.toString()
 					this.playerPoints[user] = points.toString()
-					var str = '@' + data.from + theme + coins + ' QC, ' + points + ' pts'
+					var str = '@' + data.from + theme + points + ' points'
 					API.sendChat(str)
 				}
 			}
@@ -298,7 +214,7 @@ var quizBotModel = require('app/base/Class').extend({
 		switch(timer) {
 		case 1:
 			if (this.answerMode.length === 0) { 
-				setTimeout(function(){API.sendChat('Proxima pergunta após essa música.')},7000)
+				setTimeout(function(){API.sendChat('/me Next question after this song')},7000)
 				this.songTimer.push('1')
 				localStorage.setItem('playerNames', JSON.stringify(this.playerNames))
 				localStorage.setItem('playerCoins', JSON.stringify(this.playerCoins))
@@ -312,8 +228,8 @@ var quizBotModel = require('app/base/Class').extend({
 				var a = this.answers
 				this.answerMode.length = 0
 				this.questionPicker.push('1')
-				if (typeof a[w] === 'string') { API.sendChat('Drat! Ninguém acertou corretamente. A resposta era: ' + a[w] + '. A proxima pergunta será após essa música.') }
-				else { API.sendChat('Drat! Nobody guessed correctly. The answer was: ' + a[w][0] + '. The next question is after this song.') }
+				if (typeof a[w] === 'string') { API.sendChat('I am sad now, nobody answered my question correct :( the correct answer was : ' + a[w] + '. Next question after this song (Better luck this time ;) )') }
+				else { API.sendChat('Nobody guessed correctly. The answer was: ' + a[w][0] + '. The next question is after this song.') }
 			} else { setTimeout(function(){API.sendChat('The next question is after this song.')},7000) }
 			//save stuff
 			localStorage.setItem('playerNames', JSON.stringify(this.playerNames))
@@ -324,7 +240,7 @@ var quizBotModel = require('app/base/Class').extend({
 		case 3:
 			//check if there are questions left
 			if (w === this.questions.length) {
-				setTimeout(function(){API.sendChat('Whoops! parece que eu pulei uma pergunta :P')},7000)
+				setTimeout(function(){API.sendChat('I think we are out of questions :( cya when i have new questions, bye!')},7000)
 				this.close()
 			} else {
 				//send out a new question every 3rd song
