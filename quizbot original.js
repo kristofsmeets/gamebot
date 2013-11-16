@@ -134,6 +134,11 @@ var quizBotModel = require('app/base/Class').extend({
 					this.close()
 				}
 				break;
+			case '!!fb':
+				if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
+					API.senChat('Do you want to submit questions for our QuizBot? Go like our facebookpage and send your question in a private message. http://goo.gl/OnCHez make sure you add the answer too!')
+				}
+				break;
 			case '!!reload':
 				if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
 					API.sendChat('Reloading QuizBot...')
