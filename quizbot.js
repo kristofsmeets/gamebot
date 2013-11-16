@@ -3,6 +3,8 @@
 
 
 
+
+
     if (quizBot !== undefined) quizBot.close()
      
     String.prototype.equalsIgnoreCase = function(other) { return typeof other !== 'string' ? false : this.toLowerCase() === other.toLowerCase(); };
@@ -23,8 +25,8 @@
                     API.on(API.USER_JOIN,                   this.proxy.userJoin);
      
                     //startup messages
-                    API.sendChat('Quizbot online : version ' + '0.0.1')
-                    console.log('Quizbot ' + '0.0.1' )
+                    API.sendChat('Quizbot online : version ' + '0.0.3')
+                    console.log('Quizbot ' + '0.0.3' )
      
                     //load player stats
                     if (JSON.parse(localStorage.getItem('playerNames')) !== null) {
@@ -67,7 +69,7 @@
             },
      
             //variables & arrays
-            version: '0.1.3',
+            version: '0.0.3',
             playerNames: [],
             playerCoins: [],
             playerTheme: [],
