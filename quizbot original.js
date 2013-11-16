@@ -18,8 +18,8 @@ var quizBotModel = require('app/base/Class').extend({
 		API.on(API.USER_JOIN,			this.proxy.userJoin);
 
 		//starup messages
-		API.sendChat('QuizBot version ' + this.version + ' online')
-		console.log('QuizBot ' + this.version + ' online')
+		API.sendChat('Quizbot version ' + this.version + ' online')
+		console.log('Quizbot ' + this.version + ' online')
 
 		//load player stats
 		if (JSON.parse(localStorage.getItem('playerNames')) !== null) {
@@ -128,15 +128,13 @@ var quizBotModel = require('app/base/Class').extend({
 				localStorage.setItem('playerPoints', JSON.stringify(this.playerPoints))
 				API.sendChat('QuizBot stats saved.')
 				break;
+			case '!!facebook':
+				API.sendChat('Do you want to submit questions for our QuizBot? Go like our facebookpage and send your question in a private message. http://goo.gl/OnCHez make sure you add the answer too!')
+				break;
 			case '!!kill':
 				if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
 					API.sendChat('QuizBot going offline')
 					this.close()
-				}
-				break;
-			case '!!fb':
-				if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
-					API.senChat('Do you want to submit questions for our QuizBot? Go like our facebookpage and send your question in a private message. http://goo.gl/OnCHez make sure you add the answer too!')
 				}
 				break;
 			case '!!reload':
