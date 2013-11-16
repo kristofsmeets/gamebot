@@ -25,7 +25,7 @@
                     API.on(API.USER_JOIN,                   this.proxy.userJoin);
      
                     //startup messages
-                    API.sendChat('/me Quizbot online (version 0.0.4)')
+                    API.sendChat('Quizbot online :' + ' (version 0.0.4)')
                     console.log('Quizbot ' + '0.0.4' )
      
                     //load player stats
