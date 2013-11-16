@@ -1,4 +1,7 @@
 	
+//javascript:(function()%7B$.getScript('https://raw.github.com/kristofsmeets/gamebot/master/quizbot.js');%7D());
+
+
 
     if (quizBot !== undefined) quizBot.close()
      
@@ -108,41 +111,41 @@
             onChat: function(data) {
                     var message = data.message.toLowerCase()
      
-                    //bouncer ///commands
-                    if (message.indexOf('///') === 0 && API.hasPermission(data.fromID, API.ROLE.BOUNCER)) {
+                    //bouncer !commands
+                    if (message.indexOf('!') === 0 && API.hasPermission(data.fromID, API.ROLE.BOUNCER)) {
                             switch (message) {
-                            case '///quizhelp':
+                            case '!quizhelp':
                                     API.sendChat('Give the correct answer to my questions and i will award you with points, maybe you will eventually find yourself on the top of the leaderboard ;)')
                                     break;
-                            case '///leaderboard':
+                            case '!leaderboard':
                                     var link = ''
                                     API.sendChat('Breve...')
                                     break;
-                            case '///shop':
+                            case '!shop':
                                     var link = ''
                                     API.sendChat('Breve...')
                                     break;
-                            case '///save':
+                            case '!save':
                                     localStorage.setItem('playerNames', JSON.stringify(this.playerNames))
                                     localStorage.setItem('playerCoins', JSON.stringify(this.playerCoins))
                                     localStorage.setItem('playerTheme', JSON.stringify(this.playerTheme))
                                     localStorage.setItem('playerPoints', JSON.stringify(this.playerPoints))
                                     API.sendChat('Stats saved.')
                                     break;
-                            case '///kill':
+                            case '!kill':
                                     if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
                                             API.sendChat('cya later peeps, quizbot has to leave ;)')
                                             this.close()
                                     }
                                     break;
-                            case '///reload':
+                            case '!reload':
                                     if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
                                             API.sendChat('Reloading Quizbot...........')
                                             setTimeout(function(){$.getScript('https://raw.github.com/TNBUP/blah/master/automoderator.js')},2000)
                                     }
                                     break;
                             }
-                            if (message.indexOf('///points @') === 0) {
+                            if (message.indexOf('!points @') === 0) {
                                     var user = this.getUserID(data.message.substr(8))
                                     if (user === null) { API.sendChat('I think this user does not exist') }
                                     else {
@@ -153,7 +156,7 @@
                                             }
                                     }
                             }
-                            if (message.indexOf('////coins @') === 0) {
+                            if (message.indexOf('!!coins @') === 0) {
                                     var user = this.getUserID(data.message.substr(7))
                                     if (user === null) { API.sendChat('User not found') }
                                     else {
