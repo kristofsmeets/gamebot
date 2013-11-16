@@ -25,7 +25,7 @@
                     API.on(API.USER_JOIN,                   this.proxy.userJoin);
      
                     //startup messages
-                    API.sendChat('Quizbot online : version ' + '0.0.3')
+                    API.sendChat('/me Quizbot online : version 0.0.3')
                     console.log('Quizbot ' + '0.0.3' )
      
                     //load player stats
@@ -121,11 +121,11 @@
                                     break;
                             case '!!leaderboard':
                                     var link = ''
-                                    API.sendChat('Breve...')
+                                    API.sendChat('under construction')
                                     break;
                             case '!!shop':
                                     var link = ''
-                                    API.sendChat('Breve...')
+                                    API.sendChat('under construction')
                                     break;
                             case '!!save':
                                     localStorage.setItem('playerNames', JSON.stringify(this.playerNames))
