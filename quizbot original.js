@@ -80,7 +80,7 @@ var quizBotModel = require('app/base/Class').extend({
                     
 
                     // "[plug.dj] When did plug.dj go public?",
-                    "/me [plug.dj] What is the maximum of songs you can have in a playlist?",
+                    "/me QUIZ [plug.dj] What is the maximum of songs you can have in a playlist?",
                     
 	],
 	answers: [
