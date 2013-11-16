@@ -18,7 +18,7 @@ var quizBotModel = require('app/base/Class').extend({
 		API.on(API.USER_JOIN,			this.proxy.userJoin);
 
 		//starup messages
-		API.sendChat('/me Quizbot version ' + this.version + ' online')
+		API.sendChat('Quizbot version ' + this.version + ' online')
 		console.log('Quizbot ' + this.version + ' online')
 
 		//load player stats
@@ -80,7 +80,7 @@ var quizBotModel = require('app/base/Class').extend({
                     
 
                     // "[plug.dj] When did plug.dj go public?",
-                    "/me QUIZ [plug.dj] What is the maximum of songs you can have in a playlist?",
+                    "[plug.dj] What is the maximum of songs you can have in a playlist?",
                     
 	],
 	answers: [
@@ -111,32 +111,32 @@ var quizBotModel = require('app/base/Class').extend({
 		if (message.indexOf('!!') === 0 && API.hasPermission(data.fromID, API.ROLE.BOUNCER)) {
 			switch (message) {
 			case '!!help':
-				API.sendChat('/me Give the correct answer to my questions and i will award you with points, maybe you will eventually find yourself on the top of the leaderboard ;)')
+				API.sendChat('Give the correct answer to my questions and i will award you with points, maybe you will eventually find yourself on the top of the leaderboard ;)')
 				break;
 			case '!!leaderboard':
 				var link = ''
-				API.sendChat('/me not yet implemented')
+				API.sendChat('not yet implemented')
 				break;
 			case '!!shop':
 				var link = ''
-				API.sendChat('/me not yet implemented')
+				API.sendChat('not yet implemented')
 				break;
 			case '!!save':
 				localStorage.setItem('playerNames', JSON.stringify(this.playerNames))
 				localStorage.setItem('playerCoins', JSON.stringify(this.playerCoins))
 				localStorage.setItem('playerTheme', JSON.stringify(this.playerTheme))
 				localStorage.setItem('playerPoints', JSON.stringify(this.playerPoints))
-				API.sendChat('/me QuizBot stats saved.')
+				API.sendChat('QuizBot stats saved.')
 				break;
 			case '!!kill':
 				if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
-					API.sendChat('/me QuizBot going offline')
+					API.sendChat('QuizBot going offline')
 					this.close()
 				}
 				break;
 			case '!!reload':
 				if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
-					API.sendChat('/me Reloading QuizBot...')
+					API.sendChat('Reloading QuizBot...')
 					setTimeout(function(){$.getScript('https://raw.github.com/TNBUP/blah/master/automoderator.js')},2000)
 				}
 				break;
@@ -188,7 +188,7 @@ var quizBotModel = require('app/base/Class').extend({
 					//new user stuff
 					this.playerNames.push(data.fromID)
 					this.playerTheme.push('0')
-					this.playerPoints.push('5')
+					this.playerPoints.push('1')
 					this.playerCoins.push('5')
 					API.sendChat('@' + data.from + ' you gave the correct answer! you gained 1 points, for a total of : 1 point')
 				} else {
@@ -214,7 +214,7 @@ var quizBotModel = require('app/base/Class').extend({
 		switch(timer) {
 		case 1:
 			if (this.answerMode.length === 0) { 
-				setTimeout(function(){API.sendChat('/me Next question after this song')},7000)
+				setTimeout(function(){API.sendChat('NEXT QUESTION AFTER THIS SONG')},7000)
 				this.songTimer.push('1')
 				localStorage.setItem('playerNames', JSON.stringify(this.playerNames))
 				localStorage.setItem('playerCoins', JSON.stringify(this.playerCoins))
