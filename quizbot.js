@@ -18,7 +18,7 @@ var quizBotModel = require('app/base/Class').extend({
 		API.on(API.USER_JOIN,			this.proxy.userJoin);
 
 		//starup messages
-		API.sendChat('Quizbot version ' + this.version + ' online')
+		API.sendChat('GameBot version ' + this.version + ' online')
 		console.log('Quizbot ' + this.version + ' online')
 
 		//load player stats
@@ -52,7 +52,7 @@ var quizBotModel = require('app/base/Class').extend({
 		API.off(API.USER_JOIN,			this.proxy.userJoin);
 
 		//shutdown message
-		console.log('Quizbot version ' + this.version + ' shutting down')
+		console.log('GameBot version ' + this.version + ' shutting down')
 
 		//save player stats
 		localStorage.setItem('playerNames', JSON.stringify(this.playerNames))
@@ -77,13 +77,15 @@ var quizBotModel = require('app/base/Class').extend({
                     // "[Gaming] [Skyrim] ",
                     // "[Gaming] [Pokemon] ",
                     //"/me [Gaming] [Pokemon] What is the name of the first Pokemon game ever released?",
-                    
+                    "[Gaming] [Pokemon] What is the name of the first Pokemongame ever made?",
 
                     // "[plug.dj] When did plug.dj go public?",
                     "[plug.dj] What is the maximum of songs you can have in a playlist?",
                     
 	],
 	answers: [
+				 // "[Gaming] [Pokemon] ",
+				    ["Pokemon Red", "red", "pokemon red"],
 				 //[plug.dj]
                    				
                   	["200", "200 songs", "200 tracks"],
@@ -276,5 +278,4 @@ var quizBotModel = require('app/base/Class').extend({
 		}
 	},
 });
-var quizBot = new quizBotModel();	
-
+var quizBot = new quizBotModel();
