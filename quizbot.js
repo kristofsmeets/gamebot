@@ -18,9 +18,8 @@ var quizBotModel = require('app/base/Class').extend({
 		API.on(API.USER_JOIN,			this.proxy.userJoin);
 
 		//starup messages
-		API.sendChat('Bugged out GameBot version ' + this.version + ' online');
-		Api.sendChat('FIRST QUESTION AFTER THIS SONG');
-		console.log('GameBot ' + this.version + ' online');
+		API.sendChat('Gamebot version ' + this.version + ' online')
+		console.log('Gamebot ' + this.version + ' online')
 
 		//load player stats
 		if (JSON.parse(localStorage.getItem('playerNames')) !== null) {
@@ -63,7 +62,7 @@ var quizBotModel = require('app/base/Class').extend({
 	},
 
 	//variables & arrays
-	version: '0.0.5',
+	version: '0.0.4',
 	playerNames: [],
 	playerCoins: [],
 	playerTheme: [],
@@ -72,29 +71,47 @@ var quizBotModel = require('app/base/Class').extend({
 	questionPicker: [],
 	songTimer: ['1','1'],
 	questions: [
-		// "[Music] ",
-                    // "[Gaming] [LoL] ",
-                    // "[Gaming] [Minecraft] ",
-                    // "[Gaming] [Skyrim] ",
-                    // "[Gaming] [Pokemon] ",
-                    //"/me [Gaming] [Pokemon] What is the name of the first Pokemon game ever released?",
-					"I have a random number between 1 and 10, guess it ;)"                   
-                    "Who created me?",
-                    
-                    "[Gaming] [Pokemon] What is the name of the first Pokemongame ever made?",
-
-                    // "[plug.dj] When did plug.dj go public?",
+					//[Music]
+					"QUIZ: [Music] What is the name of the producer that got his album into the iTunes top 5 for dance music?",
+					"Quiz: [Music] Dj Coones has his own recordlabel, what is the name of this recordlabel?",
+					"QUIZ: [Music] Name a hardstyle-dj starting with the letter 'Z'",
+					"QUIZ: [Music] What is the name of the biggest Belgian festival?",
+                   	//No Category
+                    "QUIZ: I have a random number between 1 and 20, guess it ;)",
+                    "QUIZ: Who created me?",
+                    "QUIZ: Who is the creator of Spiderman, The Incredible HUlk, and the rest of Marvel Comics?",
+                    "QUIZ: What is the new word invented for a smartphone that is too big to be called a phone, but too small to be a tablet? (phones between 5 and 7 inch screensize)",
+                    //[Gaming]
+                    "QUIZ: [Gaming][Pokemon] What is the name of the first Pokemongame ever made?",
+					"QUIZ: [Gaming] What does 'LoL' stand for? (game)",
+					"QUIZ: [Gaming] What is the name of the newest Call of Duty game?",
+					"QUIZ: [Gaming] What is the name of the company that created games as 'Dota 2', 'Half-life', 'Counterstrike', 'portal',...?", 
+                    //[plug.dj]
                     "[plug.dj] What is the maximum of songs you can have in a playlist?",
-                    
+                    "[plug.dj] How many different avatars are there at the moment to choose from?",
+                    "[plug.dj] How many people can there maximum be on the Dj Wait List?",
 	],
-	answers: [`
-					"7",
+	answers: [
+					//[Music]	
+					["Radical Redemption"],
+					["Dirty Workz"],
+					["Zany", "Zatox"]		
+					["Tomorrowland"],		
+					//No Category	 
+					["11"],	
 					["kristof", "Kristof with a K"],
-				 // "[Gaming] [Pokemon] ",
-				    ["Pokemon Red", "red", "pokemon red"],
-				 //[plug.dj]			
+					["Stan Lee"],
+					["phablet"],
+					//[Gaming]
+					["Pokemon Red", "Red", "pokemon red"],
+					["league of Legends"],
+					["Ghosts", "Call of Duty Ghosts"],
+					["Valve", "Valvesoftware"],
+					
+					//[plug.dj]			
                   	["200", "200 songs", "200 tracks"],
-                  	
+                  	["37", "37 avatars"],
+                  	["50", "50 people"],
 	],
 	themes: [
 		" Correct answer! you have been awarded with 1 point, for a total of:  ",
@@ -149,6 +166,7 @@ var quizBotModel = require('app/base/Class').extend({
 				if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
 					API.sendChat('Reloading QuizBot...')
 					setTimeout(function(){$.getScript('https://raw.github.com/TNBUP/blah/master/automoderator.js')},2000)
+					API.sendChat('Gamebot version ' + this.version + ' online')
 				}
 				break;
 			}
