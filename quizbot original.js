@@ -3,17 +3,6 @@ if (quizBot !== undefined) quizBot.close()
 String.prototype.equalsIgnoreCase = function(other) { return typeof other !== 'string' ? false : this.toLowerCase() === other.toLowerCase(); };
 var quizBotModel = require('app/base/Class').extend({
 	init: function() {
-		
-			//variables & arrays
-	version: '0.0.4',
-	playerNames: [],
-	playerCoins: [],
-	playerTheme: [],
-	playerPoints: [],
-	answerMode: [],
-	questionPicker: [],
-	songTimer: ['1','1'],
-		
 		//startup stuff
 		this.proxy = {
 			chat:				$.proxy(this.onChat,			this),
@@ -72,24 +61,32 @@ var quizBotModel = require('app/base/Class').extend({
 		localStorage.setItem('playerPoints', JSON.stringify(this.playerPoints))
 	},
 
-// questions
-
+	//variables & arrays
+	version: '0.0.4',
+	playerNames: [],
+	playerCoins: [],
+	playerTheme: [],
+	playerPoints: [],
+	answerMode: [],
+	questionPicker: [],
+	songTimer: ['1','1'],
 	questions: [
-			    // "[Music] ",
-                // "[Gaming] [LoL] ",
-           	    // "[Gaming] [Minecraft] ",
-              	// "[Gaming] [Skyrim] ",
-              	// "[Gaming] [Pokemon] ",
-                    "[Gaming] [Pokemon] What is the name of the first Pokemon game ever released?",
-                    
-                // "[plug.dj] When did plug.dj go public?",
+		// "[Music] ",
+                    // "[Gaming] [LoL] ",
+                    // "[Gaming] [Minecraft] ",
+                    // "[Gaming] [Skyrim] ",
+                    // "[Gaming] [Pokemon] ",
+                    //"/me [Gaming] [Pokemon] What is the name of the first Pokemon game ever released?",
+                    "[Gaming] [Pokemon] What is the name of the first Pokemongame ever made?",
+
+                    // "[plug.dj] When did plug.dj go public?",
                     "[plug.dj] What is the maximum of songs you can have in a playlist?",
                     
 	],
 	answers: [
-				// "[Gaming] [Pokemon] ", 
-				 	["Pokemon Red", "pokemon red", "red", "red version"]
-				//[plug.dj]
+				 // "[Gaming] [Pokemon] ",
+				 ["Pokemon Red", "Red", "pokemon red"]
+				 //[plug.dj]
                    				
                   	["200", "200 songs", "200 tracks"],
 	],
@@ -98,7 +95,7 @@ var quizBotModel = require('app/base/Class').extend({
 		["Correct answer test", "test", "end of test"]
 	],
 
-//get user object function
+	//get user object function
 	getUserID: function(data) {
     	data = data.trim();
 		if (data.substr(0,1) === '@') { data = data.substr(1) }
@@ -112,13 +109,13 @@ var quizBotModel = require('app/base/Class').extend({
 	onChat: function(data) {
 		var message = data.message.toLowerCase()
 
-//bouncer !!commands
+		//bouncer ~commands
 		if (message.indexOf('!!') === 0 && API.hasPermission(data.fromID, API.ROLE.BOUNCER)) {
 			switch (message) {
 			case '!!help':
 				API.sendChat('Give the correct answer to my questions and i will award you with points, maybe you will eventually find yourself on the top of the leaderboard ;)')
 				break;
-			case '!!leader':
+			case '!!leaderboard':
 				var link = ''
 				API.sendChat('not yet implemented')
 				break;
@@ -133,10 +130,8 @@ var quizBotModel = require('app/base/Class').extend({
 				localStorage.setItem('playerPoints', JSON.stringify(this.playerPoints))
 				API.sendChat('QuizBot stats saved.')
 				break;
-			case '!!question':
-				API.sendChat('Do you want to submit questions for our QuizBot?')
-				API.sendChat('Go like our facebookpage and send your question in a private message: http://goo.gl/OnCHez')
-				API.sendChat(' make sure you add the answer too!')
+			case '!!facebook':
+				API.sendChat('Do you want to submit questions for our QuizBot? Go like our facebookpage and send your question in a private message. http://goo.gl/OnCHez make sure you add the answer too!')
 				break;
 			case '!!kill':
 				if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
@@ -175,7 +170,7 @@ var quizBotModel = require('app/base/Class').extend({
 			}
 		}
 
-//awarding points for correct answer
+		//answering questions stuff
 		if (this.answerMode.length === 1 && data.fromID !== API.getUser().id) {
 			var answerCorrect = false
 			if (typeof this.answers[this.questionPicker.length] === 'string') {
@@ -193,16 +188,16 @@ var quizBotModel = require('app/base/Class').extend({
 			if (answerCorrect === true) {
 				this.answerMode.length = 0
 				this.questionPicker.push('1')
-	//check if user is in the database
+				//check if user is in the database
 				if (this.playerNames.indexOf(data.fromID) === -1) {
-	//new user stuff
+					//new user stuff
 					this.playerNames.push(data.fromID)
 					this.playerTheme.push('0')
 					this.playerPoints.push('1')
 					this.playerCoins.push('5')
 					API.sendChat('@' + data.from + ' you gave the correct answer! you gained 1 points, for a total of : 1 point')
 				} else {
-	//existing user
+					//existing user
 					var user = this.playerNames.indexOf(data.fromID)
 					var coins = parseInt(this.playerCoins[user]) + 5
 					var points = parseInt(this.playerPoints[user]) + 5
@@ -217,8 +212,7 @@ var quizBotModel = require('app/base/Class').extend({
 	},
 
 	onDjAdvance: function(obj) {
-
-//timer
+		//timer
 		this.songTimer.push('1')
 		var timer = this.songTimer.length, w = this.questionPicker.length
 
