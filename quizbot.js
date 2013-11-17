@@ -19,7 +19,7 @@ var quizBotModel = require('app/base/Class').extend({
 
 		//starup messages
 		API.sendChat('Gamebot version ' + this.version + ' online')
-                alert('test')
+                API.sendChat('Next question after this song')
 		console.log('Gamebot ' + this.version + ' online')
 
 		//load player stats
