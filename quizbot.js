@@ -287,24 +287,5 @@ var quizBotModel = require('app/base/Class').extend({
 		}
 	},
 
-	onUserJoin: function(user) {
-		//send message on user join if has theme
-		if (this.playerNames.indexOf(user.id) > -1 && this.playerTheme[this.playerNames.indexOf(user.id)] !== '0') {
-			var user = this.playerNames.indexOf(user.id)
-			var userTheme = parseInt(this.playerTheme[user])
-			var userJoinTheme = this.themes[userTheme][1]
-			API.sendChat('@' + user.username + userJoinTheme)
-		}
-	},
-
-	onUserLeave: function(user) {
-		//send message on user leave if has theme
-		if (this.playerNames.indexOf(user.id) > -1 && this.playerTheme[this.playerNames.indexOf(user.id)] !== '0') {
-			var user = this.playerNames.indexOf(user.id)
-			var userTheme = parseInt(this.playerTheme[user])
-			var userLeaveTheme = this.themes[userTheme][2]
-			API.sendChat('@' + user.username + userLeaveTheme)
-		}
-	},
 });
 var quizBot = new quizBotModel();
