@@ -76,6 +76,8 @@ var quizBotModel = require('app/base/Class').extend({
                     // "[Gaming] [Minecraft] ",
                     // "[Gaming] [Skyrim] ",
                     // "[Gaming] [Pokemon] ",
+                    
+                    "who created me?",
                     //"/me [Gaming] [Pokemon] What is the name of the first Pokemon game ever released?",
                     "[Gaming] [Pokemon] What is the name of the first Pokemongame ever made?",
 
@@ -84,8 +86,10 @@ var quizBotModel = require('app/base/Class').extend({
                     
 	],
 	answers: [
+				 
+				 ["kristof", "Kristof with a K"],
 				 // "[Gaming] [Pokemon] ",
-				 ["Pokemon Red", "Red", "pokemon red"]
+				   ["Pokemon Red", "Red", "pokemon red"],
 				 //[plug.dj]
                    				
                   	["200", "200 songs", "200 tracks"],
