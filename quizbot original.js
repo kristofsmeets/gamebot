@@ -17,10 +17,9 @@ var quizBotModel = require('app/base/Class').extend({
 		API.on(API.USER_LEAVE,			this.proxy.userLeave);
 		API.on(API.USER_JOIN,			this.proxy.userJoin);
 
-		//startup messages
-		API.sendChat('Quizbot version ' + this.version + ' online')
-                API.sendChat('First question after this song')
-		console.log('Quizbot ' + this.version + ' online')
+		//starup messages
+		API.sendChat('Gamebot version ' + this.version + ' online')
+		console.log('Gamebot ' + this.version + ' online')
 
 		//load player stats
 		if (JSON.parse(localStorage.getItem('playerNames')) !== null) {
@@ -63,7 +62,7 @@ var quizBotModel = require('app/base/Class').extend({
 	},
 
 	//variables & arrays
-	version: '0.0.5',
+	version: '0.0.4',
 	playerNames: [],
 	playerCoins: [],
 	playerTheme: [],
@@ -77,7 +76,7 @@ var quizBotModel = require('app/base/Class').extend({
                     // "[Gaming] [Minecraft] ",
                     // "[Gaming] [Skyrim] ",
                     // "[Gaming] [Pokemon] ",
-                    
+                    "I have a random number between 1 and 20, guess it ;)",
                     "who created me?",
                     //"/me [Gaming] [Pokemon] What is the name of the first Pokemon game ever released?",
                     "[Gaming] [Pokemon] What is the name of the first Pokemongame ever made?",
@@ -88,6 +87,7 @@ var quizBotModel = require('app/base/Class').extend({
 	],
 	answers: [
 				 
+				"17",				 
 				 ["kristof", "Kristof with a K"],
 				 // "[Gaming] [Pokemon] ",
 				   ["Pokemon Red", "Red", "pokemon red"],
@@ -148,6 +148,7 @@ var quizBotModel = require('app/base/Class').extend({
 				if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
 					API.sendChat('Reloading QuizBot...')
 					setTimeout(function(){$.getScript('https://raw.github.com/TNBUP/blah/master/automoderator.js')},2000)
+					API.sendChat('Gamebot version ' + this.version + ' online')
 				}
 				break;
 			}
@@ -199,13 +200,13 @@ var quizBotModel = require('app/base/Class').extend({
 					this.playerNames.push(data.fromID)
 					this.playerTheme.push('0')
 					this.playerPoints.push('1')
-					this.playerCoins.push('1')
+					this.playerCoins.push('5')
 					API.sendChat('@' + data.from + ' you gave the correct answer! you gained 1 points, for a total of : 1 point')
 				} else {
 					//existing user
 					var user = this.playerNames.indexOf(data.fromID)
-					var coins = parseInt(this.playerCoins[user]) + 1
-					var points = parseInt(this.playerPoints[user]) + 1
+					var coins = parseInt(this.playerCoins[user]) + 5
+					var points = parseInt(this.playerPoints[user]) + 5
 					var theme = this.themes[parseInt(this.playerTheme[user])]
 					this.playerCoins[user] = coins.toString()
 					this.playerPoints[user] = points.toString()
