@@ -18,9 +18,9 @@ var quizBotModel = require('app/base/Class').extend({
 		API.on(API.USER_JOIN,			this.proxy.userJoin);
 
 		//starup messages
-		API.sendChat('Gamebot version ' + this.version + ' online')
-                API.sendChat('Next question after this song')
-		console.log('Gamebot ' + this.version + ' online')
+		API.sendChat('QuizBot version ' + this.version + ' online')
+		API.sendChat('First question after this song')
+		console.log('QuizBot ' + this.version + ' online')
 
 		//load player stats
 		if (JSON.parse(localStorage.getItem('playerNames')) !== null) {
@@ -63,7 +63,7 @@ var quizBotModel = require('app/base/Class').extend({
 	},
 
 	//variables & arrays
-	version: '0.0.4',
+	version: '0.0.5',
 	playerNames: [],
 	playerCoins: [],
 	playerTheme: [],
@@ -159,10 +159,7 @@ var quizBotModel = require('app/base/Class').extend({
 				break;
 			case '!!!!reset':
 				API.sendChat('Resetting Quizbot, deleting all points earned.')
-				localStorage.setItem('playerNames', "0")
-				localStorage.setItem('playerCoins', "0")
-				localStorage.setItem('playerTheme', "0")
-				localStorage.setItem('playerPoints', "0")
+				localStorage.clear()
 				break;
 			case '!!kill':
 				if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
