@@ -18,7 +18,7 @@ var quizBotModel = require('app/base/Class').extend({
 		API.on(API.USER_JOIN,			this.proxy.userJoin);
 
 		//starup messages
-		API.sendChat('GameBot version ' + this.version + ' online')
+		API.sendChat('Quizbot version ' + this.version + ' online')
 		console.log('Quizbot ' + this.version + ' online')
 
 		//load player stats
@@ -52,7 +52,7 @@ var quizBotModel = require('app/base/Class').extend({
 		API.off(API.USER_JOIN,			this.proxy.userJoin);
 
 		//shutdown message
-		console.log('GameBot version ' + this.version + ' shutting down')
+		console.log('Quizbot version ' + this.version + ' shutting down')
 
 		//save player stats
 		localStorage.setItem('playerNames', JSON.stringify(this.playerNames))
@@ -86,8 +86,7 @@ var quizBotModel = require('app/base/Class').extend({
 	answers: [
 				 // "[Gaming] [Pokemon] ",
 				    ["Pokemon Red", "red", "pokemon red"],
-				 //[plug.dj]
-                   				
+				 //[plug.dj]			
                   	["200", "200 songs", "200 tracks"],
 	],
 	themes: [
