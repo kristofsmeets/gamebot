@@ -18,8 +18,9 @@ var quizBotModel = require('app/base/Class').extend({
 		API.on(API.USER_JOIN,			this.proxy.userJoin);
 
 		//starup messages
-		API.sendChat('Quizbot version ' + this.version + ' online')
-		console.log('Quizbot ' + this.version + ' online')
+		API.sendChat('Bugged out GameBot version ' + this.version + ' online')
+		Api.sendChat('FIRST QUESTION AFTER THIS SONG')
+		console.log('GameBot ' + this.version + ' online')
 
 		//load player stats
 		if (JSON.parse(localStorage.getItem('playerNames')) !== null) {
@@ -62,7 +63,7 @@ var quizBotModel = require('app/base/Class').extend({
 	},
 
 	//variables & arrays
-	version: '0.0.4',
+	version: '0.0.5',
 	playerNames: [],
 	playerCoins: [],
 	playerTheme: [],
@@ -77,17 +78,23 @@ var quizBotModel = require('app/base/Class').extend({
                     // "[Gaming] [Skyrim] ",
                     // "[Gaming] [Pokemon] ",
                     //"/me [Gaming] [Pokemon] What is the name of the first Pokemon game ever released?",
+					"I have a random number between 1 and 10, guess it ;)"                   
+                    "Who created me?",
+                    
                     "[Gaming] [Pokemon] What is the name of the first Pokemongame ever made?",
 
                     // "[plug.dj] When did plug.dj go public?",
                     "[plug.dj] What is the maximum of songs you can have in a playlist?",
                     
 	],
-	answers: [
+	answers: [`
+					"7",
+					["kristof", "Kristof with a K"],
 				 // "[Gaming] [Pokemon] ",
 				    ["Pokemon Red", "red", "pokemon red"],
 				 //[plug.dj]			
                   	["200", "200 songs", "200 tracks"],
+                  	
 	],
 	themes: [
 		" Correct answer! you have been awarded with 1 point, for a total of:  ",
