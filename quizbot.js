@@ -18,9 +18,9 @@ var quizBotModel = require('app/base/Class').extend({
 		API.on(API.USER_JOIN,			this.proxy.userJoin);
 
 		//starup messages
-		API.sendChat('Bugged out GameBot version ' + this.version + ' online')
-		Api.sendChat('FIRST QUESTION AFTER THIS SONG')
-		console.log('GameBot ' + this.version + ' online')
+		API.sendChat('Bugged out GameBot version ' + this.version + ' online');
+		Api.sendChat('FIRST QUESTION AFTER THIS SONG');
+		console.log('GameBot ' + this.version + ' online');
 
 		//load player stats
 		if (JSON.parse(localStorage.getItem('playerNames')) !== null) {
