@@ -157,6 +157,13 @@ var quizBotModel = require('app/base/Class').extend({
 			case '!!facebook':
 				API.sendChat('Do you want to submit questions for our QuizBot? Go like our facebookpage and send your question in a private message. http://goo.gl/OnCHez make sure you add the answer too!')
 				break;
+			case '!!!!reset':
+				API.sendChat('Resetting Quizbot, deleting all points earned.')
+				localStorage.setItem('playerNames', "0")
+				localStorage.setItem('playerCoins', "0")
+				localStorage.setItem('playerTheme', "0")
+				localStorage.setItem('playerPoints', "0")
+				break;
 			case '!!kill':
 				if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
 					API.sendChat('QuizBot going offline')
