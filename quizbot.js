@@ -159,7 +159,7 @@ var quizBotModel = require('app/base/Class').extend({
 				break;
 			case '!!!!reset':
 				API.sendChat('Resetting Quizbot, deleting all points earned.')
-				localStorage.clear()
+				window.localStorage.clear()
 				break;
 			case '!!kill':
 				if (API.hasPermission(data.fromID,API.ROLE.BOUNCER) === true || data.fromID === '5105e7a23e083e5100cc1d96' || data.fromID === API.getUser().id) {
@@ -223,13 +223,13 @@ var quizBotModel = require('app/base/Class').extend({
 					this.playerNames.push(data.fromID)
 					this.playerTheme.push('0')
 					this.playerPoints.push('1')
-					this.playerCoins.push('5')
+					this.playerCoins.push('1')
 					API.sendChat('@' + data.from + ' you gave the correct answer! you gained 1 points, for a total of : 1 point')
 				} else {
 					//existing user
 					var user = this.playerNames.indexOf(data.fromID)
-					var coins = parseInt(this.playerCoins[user]) + 5
-					var points = parseInt(this.playerPoints[user]) + 5
+					var coins = parseInt(this.playerCoins[user]) + 1
+					var points = parseInt(this.playerPoints[user]) + 1
 					var theme = this.themes[parseInt(this.playerTheme[user])]
 					this.playerCoins[user] = coins.toString()
 					this.playerPoints[user] = points.toString()
